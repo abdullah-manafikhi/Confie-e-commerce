@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hero-img{
+    width: 75%;
+    height: 90%;
+}
+
+.btn-xs{
+    font-size: .5rem;
+}
+
+.btn-sm{
+    font-size:.7rem;
+}
+    
