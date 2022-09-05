@@ -128,6 +128,7 @@ console.log(goods)
             <option value='all'>All</option>
             <option value='chair'>Chair</option>
             <option value='sofa'>Sofa</option>
+            <option value='lamp'>Lamp</option>
           </select>
         </form>
       </div>

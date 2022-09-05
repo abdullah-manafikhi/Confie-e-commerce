@@ -1,4 +1,4 @@
-import {useEffect , useState , useContext} from 'react'
+import {useEffect , useState , useRef , useContext} from 'react'
 import {Link} from 'react-router-dom'
 import FirebaseContext from '../contexts/FirebsaeContext';
 import Navbar from "../Navbar"
@@ -18,6 +18,9 @@ function Home() {
   const [loading, setLoading] = useState(true)
 
   const {state , dispatch} = useContext(FirebaseContext)
+
+  const aboutBtnRef = useRef()
+  const aboutSecRef = useRef()
 
   useEffect(() => { 
    const fetchListings = async () => {
@@ -55,11 +58,16 @@ function Home() {
 
   } , [])
 
+  const scrollToDiv = (ref) =>{
+    console.log(ref.current)
+    window.scrollTo(0, ref.current.offsetTop);
+  }
+
  console.log(state)
 
   return (
     <>
-      <Navbar />
+      <Navbar displayAbout={true} reference={aboutBtnRef} click={() => scrollToDiv(aboutSecRef)} />
       <Hero />
       <div className={`mt-8 grid-cols-1 justify-center text-center w-8/12 md:w-10/12 lg:w-12/12 mx-auto my-10`}>
         <h2 className="my-20 text-green text-4xl font-bold">Best Seller</h2>
@@ -87,7 +95,7 @@ function Home() {
         >
         {loading ? <h2>Loading...</h2> : goods.map((good , index) =>(
             <SwiperSlide key={index} className='mx-auto'>
-              <div key={good.id} className="card w-64 shadow-xl">
+              <div key={good.id} className="card w-56 sm:w-64 shadow-xl">
                 <figure><img className='w-full rounded-t-xl h-40' src={good.data.image} alt="Shoes" /></figure>
                 <div className="card-body text-start ">
                   <h2 className="card-title text-beige">
@@ -95,10 +103,10 @@ function Home() {
                   </h2>
                   <p className='h-8 w-fit text-xs'>{good.data.description}</p>
                   <p className='text-xs'>price : {good.data.price}$</p>
-                  <div className="card-actions justify-center">
+                  <div className="card-actions justify-end">
                     <Link
                       to='/shop' 
-                      className="ml-4 mt-4 btn btn-primary bg-green border-green hover:bg-dark-green hover:border-dark-green"
+                      className="ml-4 mt-4 btn btn-primary btn-sm bg-green border-green hover:bg-dark-green hover:border-dark-green"
                       id={good.id}
                       >Start shopping
                     </Link >
@@ -109,7 +117,7 @@ function Home() {
           )) }     
           </Swiper>
       </div>
-      <About /> 
+      <About reference={aboutSecRef} /> 
       <Footer/>
     </>
   )

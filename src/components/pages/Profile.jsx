@@ -13,7 +13,7 @@ function Profile() {
 
  useEffect(() => {
   //checking wether the user is logged in
-  let userId
+  let userEmail
   if(state.userCredentials !== null){ 
     console.log(state.userCredential)
    const auth = getAuth();
@@ -21,7 +21,7 @@ function Profile() {
       if (user) {
         setIsLoggedIn(true)
         setUserName(user.displayName)
-        userId = user.uid
+        userEmail = user.email
         const fetchListings = async () => {
           try{
             //get refrence
@@ -29,7 +29,7 @@ function Profile() {
            //create query
            const q = query(
               listingRef,
-              where("userId", "==", userId)
+              where("userEmail", "==", userEmail)
            );
            const querySnap = await getDocs(q)
            //execute query 
@@ -65,24 +65,19 @@ const [loading, setLoading] = useState(true)
     <div>
       {console.log(sales)}
       <Navbar isLoggedIn={isLoggedIn} userName={userName} />
-      <div className="grid grid-cols-1 gap-y-12 pt-44 content-center h-56 mt-24">
-        <div className=" justify-self-center text-center">
-          <h2 className='text-2xl text-green font-semibold relative bottom-4'>Update Your Password</h2>
-          <input type="text" placeholder="Type here" className="input input-ghost my-2 bg-gray-300 w-full max-w-xs" />
-          <input type="text" placeholder="Type here" className="input input-ghost my-2 bg-gray-300 w-full max-w-xs" />
-        </div>
+      <div className="grid grid-cols-1 content-center h-56 mt-24">
         {sales === null ? (<h2>Loading...</h2>) : 
           <div className="text-center">
+            
             <h2 className='text-2xl text-green font-semibold my-4'>Your Previous Purchases</h2>
             {loading ? (<h2 className='mx-auto'>Loading....</h2>) : sales === null ||  sales.length !== 0 ? (
-                <table className="table table-compact w-fit mx-auto">
+                <table className="table table-compact w-fit mt-8 mx-auto">
                   {/*-- head -- */}
                   <thead>
                     <tr>
                         <th>index</th>
                         <th>Product Name</th>
                         <th>Price</th>
-                        <th>Capital Price</th>
                         <th>Quantity</th>
                     </tr>
                     </thead>
@@ -92,7 +87,6 @@ const [loading, setLoading] = useState(true)
                             <th className='text-sm'>{index + 1}</th>
                             <td className='text-sm'>{sale.data.itemName}</td>
                             <td className='text-sm'>{sale.data.price}</td>
-                            <td className='text-sm'>{sale.data.capitalPrice}</td>
                             <td className='text-sm'>{sale.data.quantity}</td>
                         </tr>
                     ))}

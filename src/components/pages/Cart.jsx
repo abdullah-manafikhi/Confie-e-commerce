@@ -34,8 +34,9 @@ function Cart() {
     const handlePurchaseClick = (e) => {
       console.log(purchasedItems.length)
       const applicatingPurchase = async (item , index , auth) => { 
+        console.log(auth.currentUser.email)
         await setDoc(doc(db, "sales", uuid()), {
-          userId : auth.currentUser.uid,
+          userEmail : auth.currentUser.email,
           itemId : item.id,
           itemName : item.data.name,
           price : item.data.price,

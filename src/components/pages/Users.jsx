@@ -1,4 +1,5 @@
 import {useState ,useEffect , useContext} from 'react'
+import { Link } from 'react-router-dom';
 import Dashboard from "./Dashboard"
 import { collection, getDocs , query, limit } from "firebase/firestore";
 import {db} from '../../firebase.config'
@@ -47,7 +48,7 @@ function Users() {
       <Dashboard Navbar={status => setNavbarStatus(status)} />
       <div className={`${navbarStatus ? 'hidden':'block'} w-screen pl-2 pr-6 relative left-0`}>
         <p className='text-start ml-6 sm:ml-0 sm:text-center text-green text-3xl font-bold mt-4'>Users</p>
-        <p className="btn btn-ghost text-green absolute top-4 right-0"><BiArrowBack className='mr-2' />go back home</p>
+        <Link to='/' className="btn btn-ghost text-green absolute top-4 right-0"><BiArrowBack className='mr-2' />go back home</Link>
         <div className="mt-16 text-center">
           {loading ? (<h2 className='mx-auto'>Loading....</h2>) :(
             <table className="table table-compact w-fit mx-auto">

@@ -16,19 +16,21 @@ function LogIn() {
   })
   const [showPassword, setShowPassword] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userName, setUserName] = useState('')
 
   // intializing the context
   const {dispatch} = useContext(FirebaseContext)
   
   const navigate = useNavigate()  
   
-  //checking wether the user is logged in if he is logged in the he will be redirected to shop page
+  //checking wether the user is logged in , if he is logged in the he will be redirected to shop page
   const auth = getAuth();
   useEffect(() => {
       onAuthStateChanged(auth, (user) => {
           console.log(user)
         if (user) {
           console.log(user)
+          setUserName(user.displayName)
           dispatch({
             type: 'USER_CREDENTIALS',
             payload:user
@@ -39,7 +41,7 @@ function LogIn() {
   } , [])
     
   useEffect(() => {
-    isLoggedIn ? navigate('/shop') : navigate('/log-in')
+    isLoggedIn ? userName === 'admin' ? navigate('/dashboard/users') : navigate('/shop') : navigate('/log-in')
   } , [isLoggedIn])
 
 

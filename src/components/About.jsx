@@ -1,8 +1,8 @@
 import heroImg from '../assets/images/heroImg.jpg'
 
-function About() {
+function About({reference}) {
   return (
-    <div className='grid grid-cols-1 content-center justify-center text-center h-fit mt-16 sm:mt-0 sm:h-screen'>
+    <div ref={reference} className='grid grid-cols-1 content-center justify-center text-center h-fit mt-16 sm:mt-0 sm:h-screen'>
         <div className="grid grid-cols-1 sm:grid-cols-3 h-full content-center justify-center">
             <div className='col-span-2 px-6' >
               <h2 className='text-2xl text-green font-bold'>About Us</h2>

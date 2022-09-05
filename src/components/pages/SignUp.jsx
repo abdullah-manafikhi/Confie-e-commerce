@@ -1,6 +1,6 @@
 import googleIcon from '../../assets/svg/googleIcon.svg'
 import {ReactComponent as VisibilityIcon} from '../../assets/svg/visibilityIcon.svg'
-import {Link} from 'react-router-dom'
+import {Link , useNavigate} from 'react-router-dom'
 import {app} from '../../firebase.config'
 import {useState} from 'react'
 import {getAuth , createUserWithEmailAndPassword , updateProfile} from 'firebase/auth'
@@ -18,7 +18,7 @@ function SignUp() {
   })
 
   const [showPassword, setShowPassword] = useState(false)
-
+  const navigate = useNavigate()
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -34,6 +34,7 @@ function SignUp() {
       formDataCopy.timestamp = serverTimestamp()
 
       await setDoc(doc(db , 'users' , user.uid) , formDataCopy)
+      navigate('/shop')
       console.log(userCredential.user)
     }
     catch(error){

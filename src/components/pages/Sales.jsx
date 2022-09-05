@@ -1,4 +1,5 @@
 import { useState , useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { collection, getDocs , query, limit } from "firebase/firestore";
 import {db} from '../../firebase.config'
 import {BiArrowBack} from 'react-icons/bi'
@@ -46,7 +47,7 @@ function Sales() {
       <Dashboard Navbar={status => setNavbarStatus(status)} />
       <div className={` ${navbarStatus ? 'hidden':'block'} w-screen relative left-0`}>
         <p className='text-center text-green text-3xl mt-4 font-bold'>Sales</p>
-        <p className="btn btn-ghost text-green absolute top-4 right-0"><BiArrowBack className='mr-2' />go back home</p>
+        <Link to='/' className="btn btn-ghost text-green absolute top-4 right-0"><BiArrowBack className='mr-2' />go back home</Link>
         <div className="mt-16 text-center">
           {loading ? (<h2 className='mx-auto'>Loading....</h2>) :(
             <table className="table table-compact w-fit text-center mx-auto">
@@ -54,7 +55,7 @@ function Sales() {
               <thead>
                 <tr>
                     <th></th>
-                    <th>User Id</th>
+                    <th>User Email</th>
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Cost Price</th>
@@ -65,7 +66,7 @@ function Sales() {
                 {sales.map((sale , index) =>(
                     <tr key={index} className="hover">
                         <th className='text-sm'>{index + 1}</th>
-                        <td className='text-sm'>{sale.data.userId}</td>
+                        <td className='text-sm'>{sale.data.userEmail}</td>
                         <td className='text-sm'>{sale.data.itemName}</td>
                         <td className='text-sm'>{sale.data.price}</td>
                         <td className='text-sm'>{sale.data.capitalPrice}</td>

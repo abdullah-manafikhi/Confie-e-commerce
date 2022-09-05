@@ -72,7 +72,7 @@ function AddProducts() {
         defaultValue={formData.image || ""} 
         className="input input-bordered border-beige w-full max-w-xs" 
         />
-        <label className='relative right-24 top-3 text-beige bg-white px-2' htmlFor="name"> Capital Price </label>
+        <label className='relative right-24 top-3 text-beige bg-white px-2' htmlFor="name"> Cost Price </label>
         <input  
         type='text'
         onChange={(e) => setFormData({...formData ,capitalPrice :e.target.value})} 
