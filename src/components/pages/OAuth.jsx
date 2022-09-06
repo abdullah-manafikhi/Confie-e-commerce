@@ -28,7 +28,8 @@ function OAuth() {
                     timestamp: serverTimestamp()
                 })
             }
-            navigate("/")
+            toast.success("you are logged in !")
+            navigate("/shop")
         }
         catch(error){
             console.log(error)
