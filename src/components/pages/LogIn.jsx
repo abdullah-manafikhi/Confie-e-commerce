@@ -6,6 +6,7 @@ import {ReactComponent as VisibilityIcon} from '../../assets/svg/visibilityIcon.
 import firebaseContext from '../contexts/FirebsaeContext';
 import OAuth from './OAuth';
 import FirebaseContext from '../contexts/FirebsaeContext';
+import {BiArrowBack} from 'react-icons/bi'
 
 
 function LogIn() {
@@ -49,9 +50,12 @@ function LogIn() {
   
   const onSubmit = async (e) => {
     e.preventDefault()
-    try{
+    
       const reAuth = async () => {
+        console.log('test')
+        try{
         const userCredential = await signInWithEmailAndPassword(auth , formData.email , formData.password)
+        console.log(userCredential)
         if(userCredential.user.email === 'admin@gmail.com'){
           toast.success("you are logged in !")
           navigate('/dashboard/users')
@@ -64,21 +68,20 @@ function LogIn() {
           })
           navigate('/shop')
         }
-        }
-        reAuth()
+      }
+      catch(error){
+        console.log(error)
+        toast.error('bad credentials')
+      }
     }
-    catch(error){
-      console.log(error)
-      toast.error('you have enterd bad credentials')
-    }
+      reAuth()
+    
   }
 
-  const googleOnClick = async () => {
-
-  }
 
   return (
     <div className='w-screen h-full grid grid-cols-1 grid-rows-1 justify-items-center py-20 bg-beige'>
+    <Link to='/' className="btn btn-ghost text-green absolute top-4 left-0"><BiArrowBack className='mr-2' />go back home</Link>
       <div className="glass w-10/12 sm:w-6/12 lg:w-4/12 rounded-2xl py-6 px-4">
         <h2 className='mx-auto text-center text-4xl font font-bold text-green'>Log in</h2>
         <form onSubmit={onSubmit} className='mt-8 grid grid-cols-1 justify-items-center'>

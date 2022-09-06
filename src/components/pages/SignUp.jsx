@@ -7,6 +7,7 @@ import {getAuth , createUserWithEmailAndPassword , updateProfile} from 'firebase
 import OAuth from './OAuth'
 import { db } from '../../firebase.config'
 import {setDoc , doc , serverTimestamp} from 'firebase/firestore'
+import {toast} from 'react-toastify'
 
 
 function SignUp() {
@@ -34,10 +35,12 @@ function SignUp() {
       formDataCopy.timestamp = serverTimestamp()
 
       await setDoc(doc(db , 'users' , user.uid) , formDataCopy)
+      toast.success('you have signed successfully')
       navigate('/shop')
       console.log(userCredential.user)
     }
     catch(error){
+      toast.error("bad Credentials")
       console.log(error)
     }
   }

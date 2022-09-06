@@ -146,7 +146,7 @@ console.log(goods)
                 <div className="card-actions justify-end">
                   <button
                     className="ml-4 mt-4 btn btn-primary btn-sm bg-green border-green hover:bg-dark-green hover:border-dark-green"
-                    onClick={(e) => setAddCartClicked(e.target.id)}
+                    onClick={(e) => isLoggedIn ? setAddCartClicked(e.target.id) : navigate('/log-in')}
                     id={good.id}
                     >Add to Cart
                   </button >
