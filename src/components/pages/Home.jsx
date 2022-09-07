@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination ,Autoplay , Navigation } from "swiper";
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { toast } from 'react-toastify';
 
 function Home() {
   const [goods, setGoods] = useState(null)
@@ -51,7 +52,7 @@ function Home() {
            })          
        }   
        catch(error){
-           console.log(error)
+         console.log(error)
        }   
    }
    fetchListings()
@@ -59,18 +60,23 @@ function Home() {
   } , [])
 
   const scrollToDiv = (ref) =>{
-    console.log(ref.current)
     window.scrollTo(0, ref.current.offsetTop);
   }
-
- console.log(state)
+  let index = 0;
+  const vpnNote = () => {
+    ++index;
+    if(index === 1){
+      toast.info('If you are in Syria please turn on your VPN so the website\'s can work properly')
+    }
+  }
+  
 
   return (
-    <>
+    <div  onLoad={() => vpnNote()}>
       <Navbar displayAbout={true} reference={aboutBtnRef} click={() => scrollToDiv(aboutSecRef)} />
       <Hero />
-      <div className={`mt-8 grid-cols-1 justify-center text-center w-8/12 md:w-10/12 lg:w-12/12 mx-auto my-10`}>
-        <h2 className="my-20 text-green text-4xl font-bold">Best Seller</h2>
+      <div className={`mt-8 grid-cols-1 justify-center text-center w-8/12 md:w-10/12 lg:w-12/12 mx-auto my-24`}>
+        <h2 className="mt-24 mb-10 text-green text-4xl font-bold">Best Seller</h2>
         <Swiper
           className='mx-auto '
           spaceBetween={50}
@@ -91,7 +97,6 @@ function Home() {
           }}
           pagination={true}
           modules={[Pagination , Autoplay]}
-          onSwiper={(swiper) => console.log(swiper)}
         >
         {loading ? <h2>Loading...</h2> : goods.map((good , index) =>(
             <SwiperSlide key={index} className='mx-auto'>
@@ -119,11 +124,8 @@ function Home() {
       </div>
       <About reference={aboutSecRef} /> 
       <Footer/>
-    </>
+    </div>
   )
 }
 
-
-/* 
-        */
 export default Home

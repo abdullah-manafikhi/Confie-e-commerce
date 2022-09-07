@@ -28,9 +28,7 @@ function LogIn() {
   const auth = getAuth();
   useEffect(() => {
       onAuthStateChanged(auth, (user) => {
-          console.log(user)
         if (user) {
-          console.log(user)
           setUserName(user.displayName)
           dispatch({
             type: 'USER_CREDENTIALS',
@@ -52,10 +50,8 @@ function LogIn() {
     e.preventDefault()
     
       const reAuth = async () => {
-        console.log('test')
         try{
         const userCredential = await signInWithEmailAndPassword(auth , formData.email , formData.password)
-        console.log(userCredential)
         if(userCredential.user.email === 'admin@gmail.com'){
           toast.success("you are logged in !")
           navigate('/dashboard/users')

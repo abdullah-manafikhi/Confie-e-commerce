@@ -16,7 +16,7 @@ function YourProducts() {
     const {dispatch} = useContext(FirebaseContext)
 
         //useNavigate initialization
-        const navigate = useNavigate()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchListings = async () => {
@@ -60,8 +60,6 @@ function YourProducts() {
         }
         
     }
-
-    console.log(goods)
 
   return (
     <div className="mt-8 text-center">

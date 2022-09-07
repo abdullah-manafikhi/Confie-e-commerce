@@ -5,7 +5,6 @@ function PrivateRoute() {
 
     const {loggedIn , checkingStatus} = useAuthStatus()
     const test = useAuthStatus()
-    console.log(test)
     if(checkingStatus){
         return <h2>Loading....</h2>
     }

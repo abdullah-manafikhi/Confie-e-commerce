@@ -83,14 +83,12 @@ function Shop() {
 
   useEffect(() => {
     if(goods !== null){
-      console.log([...cart])
       setCart([...cart ,goods.find((good) => good.id === addCartClicked)])
     }
   } , [addCartClicked])
 
   // sorting the products depending on their price
   const onPriceChange = (e) => {
-    console.log(e.target.value)
     const filteredGoods = goods
     if(e.target.value === 'highToLow'){
       const x = filteredGoods.sort((a, b) => b.data.price - a.data.price)
@@ -107,24 +105,21 @@ function Shop() {
     let filtered = initialGoods ;
     (e.target.value === 'all') ? setGoods(filtered) :
     setGoods([].concat(filtered.filter((good) => good.data.type === e.target.value )))
-    console.log(goods)
   }
 
-  
-console.log(goods)
- return (
+   return (
     <div>
       <Navbar isLoggedIn={isLoggedIn} userName={userName} />
       <div className="flex flex-auto justify-evenly w-full my-20 ">
         <span className='text-2xl py-4 ml-6 font-semibold'>Filters </span> 
         <form className='ml-6'>
-          <select onChange={onPriceChange} className="select select-bordered w-48 max-w-xs mb-4">
-            <option disabled selected>Price</option>
+          <select defaultValue='Price' onChange={onPriceChange} className="select select-bordered w-48 max-w-xs mb-4">
+            <option disabled>Price</option>
             <option value='highToLow'>High to Low</option>
             <option value='lowToHigh'>Low to High</option>
           </select>
-          <select onChange={onTypeChange} className="select select-bordered w-48 max-w-xs sm:ml-4">
-            <option disabled selected>Type</option>
+          <select defaultValue='Type' onChange={onTypeChange} className="select select-bordered w-48 max-w-xs sm:ml-4">
+            <option disabled>Type</option>
             <option value='all'>All</option>
             <option value='chair'>Chair</option>
             <option value='sofa'>Sofa</option>

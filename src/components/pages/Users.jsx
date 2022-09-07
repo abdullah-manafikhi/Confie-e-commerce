@@ -31,7 +31,6 @@ function Users() {
                       data: doc.data()
                   })
               })
-              console.log(fetchedItems2)
               setUsers(fetchedItems2)
               setLoading(false)           
           }   

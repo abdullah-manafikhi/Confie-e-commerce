@@ -14,7 +14,6 @@ function Products() {
     const navigate = useNavigate()
 
     useEffect(() => {
-      console.log(param.page);
       (param.page === ':your-products') ? setTab(true) : setTab(false)
     } , [param.page])
 
@@ -26,8 +25,8 @@ function Products() {
         <Link to='/' className="btn btn-ghost text-green absolute top-4 right-0"><BiArrowBack className='mr-2' />go back home</Link>
         <div className={`${tab?'mt-0':'mt-10'} row-span-4`}>
           <div className="tabs flex justify-center my-6">
-            <span onClick={() => navigate('/dashboard/products:your-products')} class={`${tab ? 'tab-active ' : ''}tab tab-bordered text-green`}>Your Products</span> 
-            <span onClick={() => navigate('/dashboard/products:add-products')} class={`${tab ? '' : 'tab-active '}tab tab-bordered text-green`}>Add Products</span> 
+            <span onClick={() => navigate('/dashboard/products:your-products')} className={`${tab ? 'tab-active ' : ''}tab tab-bordered text-green`}>Your Products</span> 
+            <span onClick={() => navigate('/dashboard/products:add-products')} className={`${tab ? '' : 'tab-active '}tab tab-bordered text-green`}>Add Products</span> 
           </div>
           {tab ? <YourProducts /> : <AddProducts /> }
         </div>

@@ -18,11 +18,9 @@ function Cart() {
     const handleCloseClick = (target) => {
       const ItemId = purchasedItems.findIndex((x) => x.id)
       setPurchasedItems((prevState) => prevState.splice(ItemId , 1))
-      console.log(purchasedItems)
     }
 
     const handleCounterChange = (id , index) => { 
-      console.log(id)
       setCounter((prevState) => {
         let test = [...prevState]
         id === '+' ? test[index] +=1 :test[index] !== 1 ? test[index] -=1 : test[index] = test[index] 
@@ -32,9 +30,7 @@ function Cart() {
     }
 
     const handlePurchaseClick = (e) => {
-      console.log(purchasedItems.length)
       const applicatingPurchase = async (item , index , auth) => { 
-        console.log(auth.currentUser.email)
         await setDoc(doc(db, "sales", uuid()), {
           userEmail : auth.currentUser.email,
           itemId : item.id,

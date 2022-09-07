@@ -40,8 +40,6 @@ function Sales() {
             fetchListings()
     } , [])
 
-    console.log(sales)
-
   return (
     <div className='flex'>
       <Dashboard Navbar={status => setNavbarStatus(status)} />

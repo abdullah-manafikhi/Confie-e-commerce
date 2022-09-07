@@ -37,7 +37,6 @@ function SignUp() {
       await setDoc(doc(db , 'users' , user.uid) , formDataCopy)
       toast.success('you have signed successfully')
       navigate('/shop')
-      console.log(userCredential.user)
     }
     catch(error){
       toast.error("bad Credentials")

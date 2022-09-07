@@ -52,7 +52,6 @@ function AddProducts() {
             }
         }
     }
-    console.log(formData    )
   return (
     <>
     {formData === null ? (<h2 className='mx-auto'>Loading....</h2>) : <form onSubmit={onSubmit} className='mt-8 grid grid-cols-1 justify-items-center'>

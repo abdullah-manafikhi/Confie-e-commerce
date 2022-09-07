@@ -6,14 +6,12 @@ import { toast } from 'react-toastify'
 function Navbar({isLoggedIn , userName , displayAbout , reference , click}) {
 
 const [navToggle, setNavToggle] = useState('hidden')
-console.log(navToggle)
 
 // Sign Out
   const onClick = async () => {
     try{
       const auth = getAuth()
       const logOut = await signOut(auth)
-      console.log(auth.currentUser)
       isLoggedIn = false
       toast.success("you signed out")      
     } 
@@ -21,7 +19,7 @@ console.log(navToggle)
       console.log(error)
     }  
   }
-console.log(userName)
+
   return (
     <nav className='flex flex-auto justify-between px-16 md:px-48 pt-2 text-green text-xl font-bold h-fit'>
       <label className="btn btn-circle swap swap-rotate absolute z-50 left-6 bg-green sm:hidden">

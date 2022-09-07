@@ -15,8 +15,7 @@ function Profile() {
   //checking wether the user is logged in
   let userEmail
   if(state.userCredentials !== null){ 
-    console.log(state.userCredential)
-   const auth = getAuth();
+    const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsLoggedIn(true)
@@ -48,7 +47,6 @@ function Profile() {
         }   
       }
           fetchListings()
-        console.log(user)
       } else {
         setIsLoggedIn(true)
         setUserName(state.userCredential.displayName)
@@ -63,7 +61,6 @@ const [loading, setLoading] = useState(true)
  
  return (  
     <div>
-      {console.log(sales)}
       <Navbar isLoggedIn={isLoggedIn} userName={userName} />
       <div className="grid grid-cols-1 content-center h-56 mt-24">
         {sales === null ? (<h2>Loading...</h2>) : 
