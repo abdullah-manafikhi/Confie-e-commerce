@@ -4,4 +4,6 @@ It has a "CRUD" control panel that the admin can add, read, delete and update da
 also it has registration system.</br>
 Data of the signed up users will be displayed on the c-panel.</br>
 Users can browse products after signing in and they can filter or sort products depending on the category or the price.</br>
-The website is fully responsive can suit all screens sizes
+The website is fully responsive can suit all screens sizes.
+
+You can visit the website on this https://github.com/user/repo/blob/branch/other_file.md
